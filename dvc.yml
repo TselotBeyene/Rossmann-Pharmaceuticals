@@ -1,0 +1,16 @@
+stages:
+  preprocess:
+    cmd: jupyter nbconvert --to notebooks --execute notbooks/EDA_preprocessing_train.ipynb
+    deps:
+      - notebooks/EDA_preprocessing_train.ipynb
+      - data/raw_data.csv
+    outs:
+      - data/processed_data.csv
+
+  feature_engineering:
+    cmd: jupyter nbconvert --to notebook --execute notbook/feature_engineering_train.ipynb
+    deps:
+      - notbook/feature_engineering_train.ipynb
+      - data/processed_data.csv
+    outs:
+      - data/engineered_data.csv
